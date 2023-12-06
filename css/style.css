@@ -54,7 +54,7 @@ button:hover {
 }
 
 .pokemon-list li {
-    width: calc(30% - 20px);
+    width: 200px;
     box-sizing: border-box; 
     background-color: #fff;
     border: 1px solid #ddd;
@@ -149,14 +149,18 @@ button:hover {
 }
 
 .modal-content {
+    display: flex;
     background-color: #fefefe;
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 400px;
     border-radius: 10px;
 }
-
+#modal-close{
+    width: 50px;
+    height: 50px;
+}
 .close {
     color: #aaa;
     float: right;
