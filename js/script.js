@@ -46,31 +46,37 @@ function showPokemonByIdPrompt() {
 }
 
 function displayPokemon(pokemon) {
-    let liPokemon = document.createElement("li")
-    let liPokemonImg = document.createElement("img")
+    let liPokemon = document.createElement("li");
+    let liPokemonImg = document.createElement("img");
+    let pokeballIcon = document.createElement("img"); 
 
     const pokemonId = pokemon.url.split('/')[6];
-    liPokemonImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`
-    liPokemon.innerHTML = `${pokemon.name} - ${pokemonId}`
 
-    liPokemon.setAttribute('data-pokemon-id', pokemonId)
-    liPokemonImg.addEventListener("click", function () {
-        const clickedPokemonId = this.parentNode.getAttribute('data-pokemon-id')
-        addToTeam(clickedPokemonId)
-    });
+    liPokemonImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
+    liPokemon.innerHTML = `${pokemon.name} - ${pokemonId}`;
 
-    const detailsButton = document.createElement("button")
-    detailsButton.textContent = "Detalhes"
+    liPokemon.setAttribute('data-pokemon-id', pokemonId);
+
+    pokeballIcon.src = "img/Pokebola2.png";
+    pokeballIcon.className = "pokeball-icon";
+    pokeballIcon.onclick = function () {
+        addToTeam(pokemonId);
+    };
+
+    const detailsButton = document.createElement("button");
+    detailsButton.textContent = "Detalhes";
     detailsButton.addEventListener("click", function () {
-        const clickedPokemonId = this.parentNode.getAttribute('data-pokemon-id');
-        showPokemonDetails(clickedPokemonId)
+        const clickedPokemonId = liPokemon.getAttribute('data-pokemon-id');
+        showPokemonDetails(clickedPokemonId);
     });
 
-    liPokemon.appendChild(liPokemonImg)
-    liPokemon.appendChild(detailsButton)
+    liPokemon.appendChild(liPokemonImg);
+    liPokemon.appendChild(pokeballIcon); 
+    liPokemon.appendChild(detailsButton);
 
-    document.getElementById("ListaPokemons").appendChild(liPokemon)
+    document.getElementById("ListaPokemons").appendChild(liPokemon);
 }
+
 
 
 
@@ -85,10 +91,10 @@ function showPokemonDetailsModal(pokemon) {
         <div class="pokemon-details-inner">
             <img src="${pokemon.sprites.front_default}" alt="Imagem de ${pokemon.name}" class="pokemon-image">
             <div class="details-text">
-                <strong>Tipo:</strong> ${pokemon.types.map(type => type.type.name).join(", ")}<br>
+                <strong>Tipo:</strong> ${pokemon.types.map(type => type.type.name).join(" | ")}<br>
                 <strong>Altura:</strong> ${pokemon.height / 10} m<br>
                 <strong>Peso:</strong> ${pokemon.weight / 10} kg<br>
-                <strong>Categoria:</strong> ${pokemon.species.name}
+                <strong>Habilidade Regular:</strong> ${pokemon.abilities[0].ability.name}
             </div>
         </div>
     `
@@ -138,6 +144,9 @@ function addToTeam(pokemonId) {
             alert("Você atingiu o limite de 6 Pokémon no time!")
         }
     }
+
+    
+    
 }
 
 function removeFromTeam(pokemonId) {

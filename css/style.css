@@ -1,6 +1,15 @@
+@font-face {
+    font-family: 'Pokemon Hollow';
+    src: url(../css/fonts/Pokemon\ Hollow.ttf);
+}
+
+@font-face {
+    font-family: 'Pokemon Solid';
+    src: url(../css/fonts/Pokemon\ Solid.ttf);
+}
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Pokemon Solid';
     background-color: #f8f8f8;
     margin: 0;
     padding: 0;
@@ -41,11 +50,12 @@ button:hover {
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .pokemon-list li {
-    width: 200px;
+    width: calc(30% - 20px);
+    box-sizing: border-box; 
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -56,12 +66,13 @@ button:hover {
     transition: transform 0.3s ease;
 }
 
+
 .pokemon-list li:hover {
     transform: scale(1.05);
 }
 
 .pokemon-list li img {
-    max-width: 100%;
+    
     height: auto;
     border-radius: 5px;
 }
@@ -96,6 +107,7 @@ button:hover {
     background-color: #e74c3c;
     box-shadow: -5px 0px 15px 0px rgba(0,0,0,0.1);
 }
+
 
 .team-list {
     margin-top: 20px;
@@ -158,3 +170,24 @@ button:hover {
     text-decoration: none;
     cursor: pointer;
 }
+
+.pokemon-list li {
+    position: relative;
+}
+
+.pokeball-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 30px; 
+    height: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.pokeball-icon:hover {
+    transform: scale(1.2);
+}
+
+
+  
